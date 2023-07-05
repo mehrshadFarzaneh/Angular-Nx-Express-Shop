@@ -8,7 +8,10 @@ tmp
 # dependencies
 node_modules
 
-#environment variable 
+
+.vscode
+
+#environment variable for backend secret thing
 .env
 
 # IDEs and editors
