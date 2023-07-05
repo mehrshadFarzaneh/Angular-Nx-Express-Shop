@@ -1,0 +1,59 @@
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+  max-width: 100%;
+}
+
+body {
+  box-sizing: border-box;
+  width: 100vw;
+}
+html,body{
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+}
+
+// angular matrial
+//.mat-table{
+//  table-layout: fixed !important;
+//  width: 100% !important;
+//
+//  thead{
+//    position: sticky !important;
+//    position: sticky;
+//    top: 0;
+//
+//    th{
+//      position: sticky !important;
+//      position: sticky;
+//      top: 0;
+//    }
+//  }
+//}
+tbody {
+  display: block;
+  overflow: auto;
+  height: 500px;
+  width: 100%;
+}
+
+thead tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+thead, tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+thead {
+  width: calc(100% - 1em)
+}
+
+td {
+  width: 70px;
+}

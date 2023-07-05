@@ -1,0 +1,21 @@
+For serve the project:
+nx serve shop
+ nx serve shop --port 4100
+ nx serve admin --port 4101
+
+For creating a new project:
+nx generate @nrwl/angular:app nameApp
+
+
+application level component:
+ nx g component home-page --project=shop
+ nx g component home-page --project=shop --dry-run
+ nx g component pages/home-page --project=shop --dry-run
+
+new lib inside lib:
+nx g @nrwl/angular:lib ui
+
+new component inside a lib:
+nx generate @schematics/angular:component --project=ui --name=banner --viewEncapsulation=Emulated --changeDetection=Default --prefix=ui --s
+tyle=scss --type=Component --selector=banner --export
+

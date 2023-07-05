@@ -1,0 +1,13 @@
+<div class="header flex justify-between items-center p-5 bg-gray-100">
+  <h2 mat-dialog-title class="text-xl !pl-0 font-bold">{{ data.title }}</h2>
+  <button mat-icon-button [mat-dialog-close]="false" class="close-button text-white bg-red-500 rounded-full p-2">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+<mat-dialog-content class="content p-6 text-lg">{{ data.message }}</mat-dialog-content>
+<mat-dialog-actions class="actions box flex !justify-end !pr-6 space-x-4">
+  <button mat-button [mat-dialog-close]="false" class="no-button text-white bg-gray-400 py-2 px-4 rounded">No</button>
+  <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+  <button mat-button [mat-dialog-close]="true" class="yes-button text-white bg-green-500 py-2 px-4 rounded">Yes</button>
+</mat-dialog-actions>
+<div class="h-1 w-1"></div>

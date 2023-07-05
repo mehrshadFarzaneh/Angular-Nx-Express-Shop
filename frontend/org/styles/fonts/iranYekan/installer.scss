@@ -1,0 +1,27 @@
+:root{
+  --IRAN-Yekan: IRANYekanWeb;
+}
+@font-face {
+	font-family: IRANYekanWeb;
+	font-style: normal;
+	font-weight: 700; /* Bold */
+	src: url('files/woff2/iranyekanwebbold.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+		 url('files/woff/iranyekanwebbold.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+		 url('files/ttf/iranyekanwebbold.ttf') format('truetype');
+}
+@font-face {
+	font-family: IRANYekanWeb;
+	font-style: normal;
+	font-weight: 300; /* Light */
+	src: url('files/woff2/iranyekanweblight.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+		 url('files/woff/iranyekanweblight.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+		 url('files/ttf/iranyekanweblight.ttf') format('truetype');
+}
+@font-face {
+	font-family: IRANYekanWeb;
+	font-style: normal;
+	font-weight: 400; /* Normal ( Regular ) */
+	src: url('files/woff2/iranyekanwebregular.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+		 url('files/woff/iranyekanwebregular.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+		 url('files/ttf/iranyekanwebregular.ttf') format('truetype');
+}

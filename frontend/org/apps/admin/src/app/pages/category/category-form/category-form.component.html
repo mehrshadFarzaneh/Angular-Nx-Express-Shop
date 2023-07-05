@@ -1,0 +1,54 @@
+
+<mat-card class="p-4">
+  <mat-card-header>
+    <mat-card-title>Categories</mat-card-title>
+    <mat-card-subtitle>List of all categories</mat-card-subtitle>
+  </mat-card-header>
+  <div style="padding: 4px;">
+  <div class="flex justify-between mt-4">
+    <button mat-raised-button color="accent" routerLink="../..">
+      <mat-icon>cancel</mat-icon> Cancel
+    </button>
+    <button mat-raised-button color="primary" (click)="submitForm()">
+      <mat-icon>save</mat-icon>  {{ editMode ? "Edit" : "Add" }}
+    </button>
+  </div>
+
+  <form [formGroup]="myForm" class="flex flex-col md:flex-row gap-4 mt-4">
+    <mat-form-field appearance="outline" class="w-full md:w-1/3" style="height: 50px;">
+      <mat-label>Name:</mat-label>
+      <input matInput placeholder="Name" formControlName="name">
+      <mat-error *ngIf="myForm.get('name')?.hasError('required')">Name is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-full md:w-1/3" style="height: 50px;">
+      <mat-label>Select an icon</mat-label>
+      <mat-select formControlName="selectedIcon">
+        <mat-option *ngFor="let icon of icons" [value]="icon" class="">
+          <span> {{ icon }} </span>
+          <mat-icon>{{icon}}</mat-icon>
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <color-sketch [color]="myForm.get('selectedColor')!.value" formControlName="selectedColor"></color-sketch>
+
+  </form>
+<!--    <form [formGroup]="myForm" class="flex justify-around mt-4">-->
+<!--      <mat-form-field style="width: 40%">-->
+<!--        <mat-label>Name:</mat-label>-->
+<!--        <input matInput placeholder="Name" formControlName="name">-->
+<!--        <mat-error *ngIf="myForm.get('name')?.hasError('required')">Name is required</mat-error>-->
+<!--      </mat-form-field>-->
+
+<!--      <mat-form-field style="width: 40%">-->
+<!--        <mat-label>Select an icon</mat-label>-->
+<!--        <mat-select formControlName="selectedIcon">-->
+<!--          <mat-option *ngFor="let icon of icons" [value]="icon">{{ icon }}</mat-option>-->
+<!--        </mat-select>-->
+<!--      </mat-form-field>-->
+<!--    </form>-->
+
+  </div>
+
+</mat-card>

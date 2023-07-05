@@ -1,0 +1,21 @@
+table {
+  width: 100%;
+  > thead{
+    background-color: whitesmoke !important;
+    tr {
+      > th{
+        text-align: center !important;
+        vertical-align: middle !important;
+      }
+    }
+  }
+  tbody{
+    height: calc(100vh - 205px);
+  }
+}
+
+
+th.mat-sort-header-sorted {
+  color: black;
+}
+

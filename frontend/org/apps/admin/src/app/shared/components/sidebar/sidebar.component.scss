@@ -1,0 +1,37 @@
+.sidebar{
+  position: fixed;
+  height: 100%;
+  width: 175px;
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .logo{
+    padding: 20px;
+    width: 100%;
+    img{
+      max-width: 100%;
+    }
+  }
+  .links{
+    width: 100%;
+    li {
+      display: block;
+      width: 100%;
+      text-align: center;
+      &:hover{
+        background-color: var(--secondary-700);
+      }
+      &.logout:hover{
+        background-color: var(--secondary-300);
+      }
+      a {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 10px 15px;
+      }
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@syncfusion/ej2-angular-richtexteditor": "^22.1.36",
+    "ckeditor4-angular": "^4.0.1"
+  }
+}
