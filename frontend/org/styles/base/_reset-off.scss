@@ -1,0 +1,96 @@
+ // Global Reset
+ * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+// Body
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.5;
+  color: #000000;
+  background-color: #ffffff;
+}
+
+// Headings
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+h3 {
+  font-size: 1.17rem;
+}
+
+h4 {
+  font-size: 1rem;
+}
+
+h5 {
+  font-size: 0.83rem;
+}
+
+h6 {
+  font-size: 0.67rem;
+}
+
+// Paragraphs
+p {
+  margin-bottom: 1rem;
+}
+
+// Links
+a {
+  color: #0000ee;
+  text-decoration: underline;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+// Lists
+ul, ol {
+  margin-bottom: 1rem;
+}
+
+li {
+  margin-bottom: 0.5rem;
+}
+
+// Images
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+// Forms
+input,
+textarea,
+button {
+  font-family: Arial, sans-serif;
+}
+
+button {
+  cursor: pointer;
+}
+
+// Tables
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 0.5rem;
+  border: 1px solid #000000;
+}

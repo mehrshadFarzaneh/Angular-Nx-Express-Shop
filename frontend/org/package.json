@@ -16,6 +16,7 @@
     "@angular/platform-browser-dynamic": "~16.0.0",
     "@angular/router": "~16.0.0",
     "@ckeditor/ckeditor5-angular": "^6.0.1",
+    "@kolkov/angular-editor": "^3.0.0-beta.0",
     "@nrwl/angular": "^16.3.2",
     "@nx/angular": "16.3.2",
     "@syncfusion/ej2-angular-richtexteditor": "^22.1.36",

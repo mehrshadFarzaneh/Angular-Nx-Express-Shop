@@ -9,6 +9,8 @@ import { CategoryService } from "@org/category";
 import { ProductService } from "@org/products";
 // eslint-disable-next-line @nx/enforce-module-boundaries
 import { ProductModel } from "../../../../../../../libs/products/src/lib/data-access/model/product.model";
+import { AngularEditorConfig } from "@kolkov/angular-editor";
+import { DomSanitizer } from "@angular/platform-browser";
 // import { Editor } from "ngx-editor";
 
 @Component({
@@ -16,11 +18,39 @@ import { ProductModel } from "../../../../../../../libs/products/src/lib/data-ac
   templateUrl: './product-form.component.html',
   styleUrls: ['./product-form.component.scss'],
 })
-export class ProductFormComponent implements OnInit, OnDestroy {
+export class ProductFormComponent implements OnInit {
   myForm: FormGroup;
   editMode = false;
   productId: string | null = null;
   categories: any[] = []; // You can use your own category model here
+  config: AngularEditorConfig = {
+    editable: true,
+    spellcheck: true,
+    height: '15rem',
+    minHeight: '5rem',
+    placeholder: 'Enter text here...',
+    translate: 'no',
+    defaultParagraphSeparator: 'p',
+    defaultFontName: 'Arial',
+    toolbarHiddenButtons: [
+      ['bold']
+      ],
+    customClasses: [
+      {
+        name: "quote",
+        class: "quote",
+      },
+      {
+        name: 'redText',
+        class: 'redText'
+      },
+      {
+        name: "titleText",
+        class: "titleText",
+        tag: "h1",
+      },
+    ]
+  };
   constructor(
     private formBuilder: FormBuilder,
     private activatedRoute: ActivatedRoute,
@@ -29,6 +59,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
     private breakpointObserver: BreakpointObserver,
     private snackBar: MatSnackBar,
     private router: Router,
+    public sanitizer: DomSanitizer
   ) {
     this.myForm = this.formBuilder.group({
       name: ['', Validators.required],
@@ -48,6 +79,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
       isFeatured: [false],
       dateCreated: [new Date().toString()],
     });
+
   }
 
   ngOnInit() {
@@ -106,9 +138,9 @@ export class ProductFormComponent implements OnInit, OnDestroy {
       }
     );
   }
-  ngOnDestroy() {
-    // this.editor.destroy();
-  }
+  // ngOnDestroy() {
+  //   // this.editor.destroy();
+  // }
 
   submitForm() {
     if (this.myForm.invalid) {

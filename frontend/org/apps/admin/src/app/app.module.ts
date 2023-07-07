@@ -15,7 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CategoryListComponent } from './pages/category/category-list/category-list.component';
 import { CategoryFormComponent } from './pages/category/category-form/category-form.component';
-import { ReactiveFormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import {
   MAT_COLOR_FORMATS,
   NGX_MAT_COLOR_FORMATS,
@@ -35,6 +35,7 @@ import {QuillModule} from "ngx-quill";
 import {RichTextEditorModule} from "@syncfusion/ej2-angular-richtexteditor";
 import { EditorModule } from "primeng/editor";
 import { ButtonModule } from "primeng/button";
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 
 @NgModule({
@@ -59,6 +60,7 @@ import { ButtonModule } from "primeng/button";
     MatSortModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    FormsModule,
     ReactiveFormsModule,
     NgxMatColorPickerModule,
     ColorPickerModule,
@@ -67,8 +69,9 @@ import { ButtonModule } from "primeng/button";
     MatDatepickerModule,
     RichTextEditorModule,
     BrowserAnimationsModule,
-    EditorModule,
-    ButtonModule
+    // EditorModule,
+    ButtonModule,
+    AngularEditorModule
     // QuillModule.forRoot()
   ],
   providers: [

@@ -1,4 +1,4 @@
-<mat-card class="p-4">
+<mat-card class="p-4 max-h-screen overflow-auto">
   <mat-card-header>
     <mat-card-title>Products</mat-card-title>
     <mat-card-subtitle>{{ editMode ? "Edit" : "Add" }} a product</mat-card-subtitle>
@@ -13,37 +13,37 @@
       </button>
     </div>
 
-    <form [formGroup]="myForm" class="grid grid-cols-6
+    <form [formGroup]="myForm" class="grid grid-cols-12
      gap-4 mt-4">
-      <mat-form-field appearance="outline" class="col-span-3" style="height: 50px;">
+      <mat-form-field appearance="outline" class="col-span-6 s900:col-span-12" style="height: 50px;">
         <mat-label>Name:</mat-label>
         <input matInput placeholder="Name" formControlName="name">
         <mat-error *ngIf="myForm.get('name')?.hasError('required')">Name is required</mat-error>
       </mat-form-field>
 
-      <mat-form-field appearance="outline" class="col-span-3" style="height: 50px;">
+      <mat-form-field appearance="outline" class="col-span-6 s900:col-span-12 h-50">
         <mat-label>Description:</mat-label>
         <input matInput placeholder="Description" formControlName="description">
         <mat-error *ngIf="myForm.get('description')?.hasError('required')">Description is required</mat-error>
       </mat-form-field>
 
+      <div class="rich-textbox grid grid-cols-12 col-span-12 gap-4">
+        <angular-editor
+        formControlName="richDescription"
+        [config]="config"
+        [placeholder]="'Enter text here...'"
+        class="col-span-6 s900:col-span-12"
+        ></angular-editor>
+        <div class="rich-textbox-output col-span-6 s900:col-span-12" [innerHTML]="sanitizer.bypassSecurityTrustHtml(this.myForm.get('richDescription')?.value)">
+        </div>
+      </div>
 
 
-      <!--      <ckeditor></ckeditor>-->
-
-<!--      <mat-form-field appearance="outline" class="col-span-4" style="height: 50px;">-->
-<!--        <mat-label>Rich Description:</mat-label>-->
-<!--        <div class="NgxEditor__Wrapper">-->
-<!--&lt;!&ndash;          <ngx-editor-menu [editor]="editor"> </ngx-editor-menu>&ndash;&gt;-->
-<!--&lt;!&ndash;          <ngx-editor [editor]="editor"  [placeholder]="'Type here...'"></ngx-editor>&ndash;&gt;-->
-<!--        </div>-->
-<!--      </mat-form-field >-->
-
-<!--      <div class="col-span-4">-->
-<!--        <div class="flex flex-col gap-2">-->
-<!--          <label for="image">Image:</label>-->
-<!--          <input type="file" id="image" formControlName="image">-->
-<!--        </div>-->
+     <!-- <div class="col-span-4"> -->
+       <!-- <div class="col-span-6 h-50">
+        <mat-label>Image:</mat-label>
+         <input type="file" id="image" formControlName="image">
+       </div> -->
 
 <!--        <div class="flex flex-col gap-2">-->
 <!--          <label for="images">Images:</label>-->
@@ -142,8 +142,5 @@
 <!--      </div>-->
 
     </form>
-    <div class="card flex justify-content-center">
-      <p-button label="Check" icon="pi pi-check"></p-button>
-    </div>
   </div>
 </mat-card>
