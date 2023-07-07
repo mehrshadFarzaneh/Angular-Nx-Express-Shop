@@ -4,7 +4,7 @@ function authJwt() {
   const secret = process.env.secret;
   const api = process.env.API_URL;
   return expressjwt({
-    secret,
+    secret: secret,
     algorithms: ['HS256'],
     isRevoked: isRevoked // آیا یک توکن JWT مورد اعتماد است یا خیر.
   }).unless({
