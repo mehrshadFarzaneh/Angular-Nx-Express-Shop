@@ -19,7 +19,7 @@ import { DomSanitizer } from "@angular/platform-browser";
   styleUrls: ['./product-form.component.scss'],
 })
 export class ProductFormComponent implements OnInit {
-  myForm: FormGroup;
+  myForm!: FormGroup;
   editMode = false;
   productId: string | null = null;
   categories: any[] = []; // You can use your own category model here
@@ -61,6 +61,11 @@ export class ProductFormComponent implements OnInit {
     private router: Router,
     public sanitizer: DomSanitizer
   ) {
+
+    this.initialForm()
+  }
+
+  initialForm(){
     this.myForm = this.formBuilder.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
@@ -79,9 +84,7 @@ export class ProductFormComponent implements OnInit {
       isFeatured: [false],
       dateCreated: [new Date().toString()],
     });
-
   }
-
   ngOnInit() {
     this.productId = this.activatedRoute.snapshot.paramMap.get('id');
     if (this.productId) {

@@ -21,6 +21,7 @@
       "@org/data-access/category": ["libs/data-access/category/src/index.ts"],
       "@org/orders": ["libs/orders/src/index.ts"],
       "@org/products": ["libs/products/src/index.ts"],
+      "@org/shared": ["libs/shared/src/index.ts"],
       "@org/ui": ["libs/ui/src/index.ts"],
       "@org/users": ["libs/users/src/index.ts"]
     }
