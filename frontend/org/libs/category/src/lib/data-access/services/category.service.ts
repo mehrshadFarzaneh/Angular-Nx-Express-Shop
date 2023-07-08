@@ -17,8 +17,8 @@ export class CategoryService {
     this.API_URL = appConfig.apiUrl + this.ServiceAPI;
   }
 
-  getCategories(){
-    return this.http.get(this.API_URL);
+  getCategories():Observable<any[]>{
+    return this.http.get<any[]>(this.API_URL);
   }
 
   getCategoryById(categoryId: string) {

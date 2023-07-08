@@ -11,6 +11,8 @@ import { ProductService } from "@org/products";
 import { ProductModel } from "../../../../../../../libs/products/src/lib/data-access/model/product.model";
 import { AngularEditorConfig } from "@kolkov/angular-editor";
 import { DomSanitizer } from "@angular/platform-browser";
+import { Observable } from "rxjs";
+import { CategoryModel } from "libs/category/src/lib/data-access/models/category.model";
 // import { Editor } from "ngx-editor";
 
 @Component({
@@ -23,6 +25,9 @@ export class ProductFormComponent implements OnInit {
   editMode = false;
   productId: string | null = null;
   categories: any[] = []; // You can use your own category model here
+  searchControl = new FormControl();
+  filteredCategories!: any[];
+  flaging = false;
   config: AngularEditorConfig = {
     editable: true,
     spellcheck: true,
@@ -51,19 +56,18 @@ export class ProductFormComponent implements OnInit {
       },
     ]
   };
+
+  // categories$: Observable<CategoryModel[]>;
   constructor(
     private formBuilder: FormBuilder,
     private activatedRoute: ActivatedRoute,
     private productService: ProductService,
-    private categoryService: CategoryService,
+    public categoryService: CategoryService,
     private breakpointObserver: BreakpointObserver,
     private snackBar: MatSnackBar,
     private router: Router,
-    public sanitizer: DomSanitizer
-  ) {
-
-    this.initialForm()
-  }
+    public sanitizer: DomSanitizer,
+  ) {}
 
   initialForm(){
     this.myForm = this.formBuilder.group({
@@ -86,7 +90,12 @@ export class ProductFormComponent implements OnInit {
     });
   }
   ngOnInit() {
+    this.initialForm()
     this.productId = this.activatedRoute.snapshot.paramMap.get('id');
+    this.categoryService.getCategories().subscribe(response=>{
+      this.categories = response;
+      this.flaging = true;
+    })
     if (this.productId) {
       this.productService.getProductById(this.productId).subscribe(
         (product: any) => {
@@ -114,20 +123,9 @@ export class ProductFormComponent implements OnInit {
         }
       );
     }
-
-    // Get the list of categories from the category service
-    // You can use your own logic to fetch the categories
-    // Assuming the category service returns an array of categories
-    // Assign the array to the categories variable
-    // Example:
-    // this.categoryService.getCategories().subscribe(
-    //   (categories) => {
-    //     this.categories = categories;
-    //   },
-    //   (error) => {
-    //     console.log(error);
-    //   }
-    // );
+    this.searchControl.valueChanges.subscribe((value: string) => {
+      this.categoriesFilter(value);
+    });
 
     // Your code here
 
@@ -135,6 +133,7 @@ export class ProductFormComponent implements OnInit {
     this.categoryService.getCategories().subscribe(
       (categories: any) => {
         this.categories = categories;
+        this.filteredCategories = this.categories.slice();
       },
       (error) => {
         console.log(error);
@@ -199,6 +198,23 @@ export class ProductFormComponent implements OnInit {
     this.router.navigate(['/product']);
   }
 
+
+  filter(event: any) {
+    const value = event.value;
+    this.categoriesFilter(value);
+  }
+  categoriesFilter(value: null | object | any | string) {
+    if (value) {
+      this.filteredCategories = this.categories.filter((category: any) => {
+        if (typeof category.name === 'string') {
+          return category.name.toLowerCase().includes(value.toLowerCase());
+        }
+        return false;
+      });
+    } else {
+      this.filteredCategories = this.categories;
+    }
+  }
   // compareFunction(o1: any, o2: any) {
   //   return (o1.name == o2.name && o1.id == o2.id);
   // }
@@ -207,5 +223,19 @@ export class ProductFormComponent implements OnInit {
   }
   get touchUi() {
     return this.breakpointObserver.isMatched('(max-width: 767px)');
+  }
+
+  imageUrl: string | undefined;
+  selectedImageName = "Noting selected.";
+  onFileChangeSelectedImage(event:any){
+    const file = event.target.files[0];
+    if (file) {
+      this.selectedImageName = file.name;
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.imageUrl = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
   }
 }
