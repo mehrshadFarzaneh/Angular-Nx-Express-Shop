@@ -26,6 +26,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { ScrollingModule } from "@angular/cdk/scrolling";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import {MatNativeDateModule} from "@angular/material/core";
     MatTooltipModule,
     MatStepperModule,
     ScrollingModule, // cdk,
+    NgxMatSelectSearchModule, // angular material select option with search library
     MatDatepickerModule,
     MatNativeDateModule
   ]

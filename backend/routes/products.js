@@ -2,6 +2,38 @@ const {Product} = require('../models/product');
 const { Category } = require('../models/category');
 const express = require("express");
 const router = express.Router();
+const multer = require('multer');
+const path = require('path');
+
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'uploads/'); // Set the destination folder for uploaded files
+    },
+    filename: function (req, file, cb) {
+      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+      const ext = path.extname(file.originalname); // Get the file extension
+      cb(null, file.fieldname + '-' + uniqueSuffix + ext); // Set the filename with the extension
+    },
+  });
+  const fileFilter = (req, file, cb) => {
+    const fileTypes = /jpeg|jpg|png|gif/; // Define the allowed file extensions or types
+    const extname = fileTypes.test(path.extname(file.originalname).toLowerCase());
+    const mimetype = fileTypes.test(file.mimetype);
+    
+    if (extname && mimetype) {
+      cb(null, true); // Accept the file
+    } else {
+      cb(new Error('Only image files are allowed.')); // Reject the file
+    }
+  };
+
+const upload = multer({ 
+  storage: storage,
+  fileFilter: fileFilter, // Add the file filter function
+});
+
+
 
 router.get(`/`, async (req, res) =>{
     // localhost:3000/api/v1/products?categories=2342342,234234
@@ -27,14 +59,14 @@ router.get(`/with-category-name`, async (req, res) =>{
         filter = {category: req.query.categories.split(',')}
     }
 
-    const productList = await Product.find(filter).populate('category',"name").lean();
+    const productList = await Product.find(filter).populate('category',"name").lean({ virtuals: true });
 
     if(!productList) {
         res.status(500).json({success: false})
     }
     res.send(productList.map(product => {
         product.category = product.category.name;
-        return product;
+        return {...product,id: product._id};
     }));
 })
 
@@ -47,7 +79,7 @@ router.get(`/:id`, async (req, res) =>{
     res.send(product);
 })
 
-router.post(`/`, async (req, res) =>{
+router.post(`/`,upload.single('image'), async (req, res) =>{
     const category = await Category.findById(req.body.category);
     if(!category) return res.status(400).send('Invalid Category')
 
@@ -55,7 +87,7 @@ router.post(`/`, async (req, res) =>{
         name: req.body.name,
         description: req.body.description,
         richDescription: req.body.richDescription,
-        image: req.body.image,
+        image: req.file.path,
         brand: req.body.brand,
         price: req.body.price,
         category: req.body.category,

@@ -12,7 +12,11 @@ module.exports = {
       's900': {'max': '900px'},
       // => @media (max-width: 900px) { ... }
     },
-    extend: {},
+    extend: {
+      maxHeight: {
+      '50px': '50px', // Add this line
+    }
+  },
   },
   plugins: [],
 }

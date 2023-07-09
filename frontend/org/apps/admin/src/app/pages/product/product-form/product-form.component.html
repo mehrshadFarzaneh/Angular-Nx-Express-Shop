@@ -17,15 +17,67 @@
      gap-4 mt-4">
       <mat-form-field appearance="outline" class="col-span-6 s900:col-span-12" style="height: 50px;">
         <mat-label>Name:</mat-label>
-        <input matInput placeholder="Name" formControlName="name">
+        <input matInput detail="Name" formControlName="name">
         <mat-error *ngIf="myForm.get('name')?.hasError('required')">Name is required</mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="col-span-6 s900:col-span-12 h-50">
-        <mat-label>Description:</mat-label>
-        <input matInput placeholder="Description" formControlName="description">
-        <mat-error *ngIf="myForm.get('description')?.hasError('required')">Description is required</mat-error>
+        <mat-label>Brand:</mat-label>
+        <input matInput detail="Brand" formControlName="brand">
+        <mat-error *ngIf="myForm.get('brand')?.hasError('required')">
+          Description is required
+        </mat-error>
       </mat-form-field>
+
+      <mat-form-field appearance="outline" class="col-span-6 s900:col-span-12 h-50">
+        <mat-label>Description:</mat-label>
+        <textarea matInput
+                  cdkTextareaAutosize
+                  #autosize="cdkTextareaAutosize"
+                  cdkAutosizeMinRows="1"
+                  cdkAutosizeMaxRows="5"
+                  detail="Short detail about product"
+                  formControlName="description"></textarea>
+                  <mat-error *ngIf="myForm.get('description')?.hasError('required')">Description is required</mat-error>
+      </mat-form-field>
+<mat-form-field appearance="outline" class="col-span-6 s900:col-span-12 h-50"
+       >
+        <mat-select placeholder="Bank" #singleSelect>
+          <mat-option>
+            <ngx-mat-select-search
+            (input)="filter($event.target)"
+             [FormControl]="searchControl">
+
+            </ngx-mat-select-search>
+          </mat-option>
+          <ng-container *ngIf="flaging">
+            <mat-option *ngFor="let category of filteredCategories" [value]="category">
+              {{category.name}}
+            </mat-option>
+          </ng-container>
+        </mat-select>
+        <mat-error *ngIf="myForm.get('category')?.hasError('required')">Category is required</mat-error>
+      </mat-form-field>
+
+
+
+       <mat-form-field appearance="outline" class="col-span-6 s900:col-span-12 h-50" style="max-height: 50px;">
+         <mat-label>Price:</mat-label>
+         <input matInput type="number" min=0 formControlName="price">
+         <mat-error *ngIf="myForm.get('price')?.hasError('required')">Price is required</mat-error>
+       </mat-form-field>
+
+       <mat-form-field appearance="outline" class="col-span-6 s900:col-span-12 h-50 max-h-50px">
+        <mat-label>Count in stock:</mat-label>
+        <input matInput type="number" min=0 formControlName="countInStock">
+        <mat-error *ngIf="myForm.get('countInStock')?.hasError('required')">Price is required</mat-error>
+      </mat-form-field>
+
+      <mat-slide-toggle
+       class="col-span-6 s900:col-span-12 !h-50 !flex !items-center"
+       formControlName="isFeatured">
+        Is Indexed Product?
+        ?</mat-slide-toggle>
 
       <div class="rich-textbox grid grid-cols-12 col-span-12 gap-4">
         <angular-editor
@@ -36,111 +88,35 @@
         ></angular-editor>
         <div class="rich-textbox-output col-span-6 s900:col-span-12" [innerHTML]="sanitizer.bypassSecurityTrustHtml(this.myForm.get('richDescription')?.value)">
         </div>
+
+
       </div>
 
 
-     <!-- <div class="col-span-4"> -->
-       <!-- <div class="col-span-6 h-50">
-        <mat-label>Image:</mat-label>
-         <input type="file" id="image" formControlName="image">
-       </div> -->
-
-<!--        <div class="flex flex-col gap-2">-->
-<!--          <label for="images">Images:</label>-->
-<!--          <input type="file" id="images" multiple formControlName="images">-->
-<!--        </div>-->
-<!--      </div>-->
-
-<!--      <div class="flex flex-col md:flex-row gap-4 w-full md:w-1/3">-->
-<!--        <div class="flex flex-col gap-2">-->
-<!--          <label for="brand">Brand:</label>-->
-<!--          <input type="text" id="brand" formControlName="brand">-->
-<!--        </div>-->
-
-<!--        <div class="flex flex-col gap-2">-->
-<!--          <label for="price">Price:</label>-->
-<!--          <input type="number" id="price" min=0 formControlName="price">-->
-<!--          <mat-error *ngIf="myForm.get('price')?.hasError('required')">Price is required</mat-error>-->
-<!--        </div>-->
-<!--      </div>-->
-
-<!--      <div class="flex flex-col md:flex-row gap-4 w-full md:w-1/3">-->
-<!--        <div class="flex flex-col gap-2">-->
-<!--          <label for="category">Category:</label>-->
-<!--          &lt;!&ndash; Assuming you have a list of categories in a variable called categories &ndash;&gt;-->
-<!--          &lt;!&ndash; Assuming you have a function to get the category name by id called getCategoryName &ndash;&gt;-->
-<!--          &lt;!&ndash; Assuming you have a function to get the category icon by id called getCategoryIcon &ndash;&gt;-->
-<!--          &lt;!&ndash; Assuming you have a function to get the category color by id called getCategoryColor &ndash;&gt;-->
-<!--          &lt;!&ndash; You can change these assumptions as per your logic &ndash;&gt;-->
-<!--          <select id="category" formControlName="category">-->
-<!--            &lt;!&ndash; Loop through the categories and display them as options &ndash;&gt;-->
-<!--            &lt;!&ndash; Use the category id as the value and the category name, icon and color as the display &ndash;&gt;-->
-<!--            &lt;!&ndash; Use interpolation to bind the values and functions &ndash;&gt;-->
-<!--            &lt;!&ndash; Example: {{ getCategoryName(category.id) }} &ndash;&gt;-->
-<!--            &lt;!&ndash; Example: [style.color]="getCategoryColor(category.id)" &ndash;&gt;-->
-<!--            &lt;!&ndash; Example: [value]="category.id" &ndash;&gt;-->
-<!--            &lt;!&ndash; Use ngFor directive to loop through the categories &ndash;&gt;-->
-<!--            &lt;!&ndash; Example: *ngFor = "let category of categories" &ndash;&gt;-->
-<!--            &lt;!&ndash; Use mat-icon component to display the icon &ndash;&gt;-->
-<!--            &lt;!&ndash; Example: <mat-icon>{{icon}}</mat-icon> &ndash;&gt;-->
-<!--            &lt;!&ndash; Use option component to display each option &ndash;&gt;-->
-<!--            &lt;!&ndash; Example: <option></option> &ndash;&gt;-->
-
-<!--            &lt;!&ndash; Your code here &ndash;&gt;-->
-
-<!--            &lt;!&ndash; Loop through the categories and display them as options &ndash;&gt;-->
-<!--            <option *ngFor="let category of categories" [value]="category.id">-->
-<!--              &lt;!&ndash; Use the category name, icon and color as the display &ndash;&gt;-->
-<!--              <mat-icon [style.color]="category.color">{{ category.icon }}</mat-icon>-->
-<!--              {{ category.name }}-->
-<!--            </option>-->
-
-<!--          </select>-->
-<!--        </div>-->
-
-<!--        <div class="flex flex-col gap-2">-->
-<!--          <label for="countInStock">Count In Stock:</label>-->
-<!--          <input type="number" id="countInStock" min=0 max=255 formControlName="countInStock">-->
-<!--          <mat-error *ngIf="myForm.get('countInStock')?.hasError('required')">Count In Stock is required</mat-error>-->
-<!--        </div>-->
-<!--      </div>-->
-
-<!--      <div class="flex flex-col md:flex-row gap-4 w-full md:w-1/3">-->
-<!--        <div class="flex flex-col gap-2">-->
-<!--          <label for="rating">Rating:</label>-->
-<!--          <input type="number" id="rating" min=0 max=5 formControlName="rating">-->
-<!--        </div>-->
-
-<!--        <div class="flex flex-col gap-2">-->
-<!--          <label for="numReviews">Number of Reviews:</label>-->
-<!--          <input type="number" id="numReviews" min=0 formControlName="numReviews">-->
-<!--        </div>-->
-<!--      </div>-->
-
-<!--      <div class="flex flex-col md:flex-row gap-4 w-full md:w-1/3">-->
-<!--        <div class="flex flex-col gap-2">-->
-<!--          <label>Is Featured:</label>-->
-<!--          &lt;!&ndash; Use mat-slide-toggle component to display a toggle switch &ndash;&gt;-->
-<!--          &lt;!&ndash; Example: <mat-slide-toggle></mat-slide-toggle> &ndash;&gt;-->
-<!--          &lt;!&ndash; Use formControlName to bind the value to the form &ndash;&gt;-->
-<!--          &lt;!&ndash; Example: formControlName="isFeatured" &ndash;&gt;-->
-
-<!--          &lt;!&ndash; Your code here &ndash;&gt;-->
-
-<!--          &lt;!&ndash; Use mat-slide-toggle component to display a toggle switch &ndash;&gt;-->
-<!--          <mat-slide-toggle formControlName="isFeatured"></mat-slide-toggle>-->
-<!--        </div>-->
-
-<!--        <mat-form-field>-->
-<!--          <mat-label>Angular forms (w/ deserialization)</mat-label>-->
-<!--          <input matInput [matDatepicker]="picker2"-->
-<!--                 formControlName="dateCreated">-->
-<!--          <mat-hint>MM/DD/YYYY</mat-hint>-->
-<!--          <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>-->
-<!--          <mat-datepicker #picker2></mat-datepicker>-->
-<!--        </mat-form-field>-->
-<!--      </div>-->
-
+      <div class="grid grid-cols-12 col-span-12 gap-4 s900:flex s900:flex-wrap s900:flex-col-reverse">
+        <mat-form-field appearance="outline" class="col-span-6 s900:col-span-12 h-50">
+          <div>
+            <mat-toolbar>
+              <!-- Display files names -->
+              <input matInput [value]="selectedImageName" readonly name="name" />
+              <!-- Browse Button -->
+              <button mat-flat-button color="primary">Browse File</button>
+            </mat-toolbar>
+            <!-- Fetch selected filed on change -->
+            <input
+              type="file"
+              #fileInput
+              id="uploadFile"
+              (change)="onFileChangeSelectedImage($event)"
+              name="uploadFile"
+              accept="image/*"
+            />
+          </div>
+        </mat-form-field>
+        <div *ngIf="imageUrl" class="col-span-6 s900:col-span-12 h-50 m-auto">
+          <img [src]="imageUrl" alt="Preview" class="preview-image">
+        </div>
+      </div>
     </form>
   </div>
 </mat-card>
