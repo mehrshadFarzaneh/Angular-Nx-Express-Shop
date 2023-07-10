@@ -1,0 +1,74 @@
+<mat-card style="padding-bottom: 12px; height: 100vh;">
+  <mat-card-header>
+    <mat-card-title>Orders</mat-card-title>
+    <mat-card-subtitle>List of all orders</mat-card-subtitle>
+  </mat-card-header>
+  <div style="padding: 4px;">
+    <div class="toolbar-container">
+      <mat-toolbar>
+        <button mat-raised-button color="primary" routerLink="add">
+          <mat-icon>add</mat-icon> New
+        </button>
+      </mat-toolbar>
+    </div>
+
+    <div class="example-container mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)"
+             class="mat-table mat-elevation-z8"
+             style="margin-top: 12px;"
+      >
+        <!-- User Name Column -->
+        <ng-container matColumnDef="userName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by user name">
+            User Name
+          </th>
+          <td mat-cell *matCellDef="let element"> {{ element.user?.name }} </td>
+        </ng-container>
+
+        <!-- Total Price Column -->
+        <ng-container matColumnDef="totalPrice">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by total price">
+            Total Price
+          </th>
+          <td mat-cell *matCellDef="let element"> {{ element.totalPrice }} </td>
+        </ng-container>
+
+        <!-- Date Created Column -->
+        <ng-container matColumnDef="dateCreated">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by date created">
+            Date Created
+          </th>
+          <td mat-cell *matCellDef="let element"> {{ element.dateOrdered }} </td>
+        </ng-container>
+
+        <!-- Status Column -->
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by status">
+            Status
+          </th>
+          <td mat-cell *matCellDef="let element"> {{ element.status }} </td>
+        </ng-container>
+
+        <!-- Actions Column -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>
+            Actions
+          </th>
+          <td mat-cell *matCellDef="let element">
+            <button (click)="deleteOrder(element.id)" mat-icon-button color="warn">
+              <mat-icon>delete</mat-icon>
+            </button>
+
+            <button [routerLink]="'edit/' + element.id" mat-icon-button color="primary">
+              <mat-icon>edit</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <mat-paginator class="custom-paginator" [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of orders"></mat-paginator>
+    </div>
+  </div>
+</mat-card>

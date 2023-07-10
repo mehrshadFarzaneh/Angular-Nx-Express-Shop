@@ -42,7 +42,7 @@
       </mat-form-field>
 <mat-form-field appearance="outline" class="col-span-6 s900:col-span-12 h-50"
        >
-        <mat-select placeholder="Bank" #singleSelect>
+        <mat-select placeholder="Bank" formControlName="category" #singleSelect>
           <mat-option>
             <ngx-mat-select-search
             (input)="filter($event.target)"
@@ -114,7 +114,7 @@
           </div>
         </mat-form-field>
         <div *ngIf="imageUrl" class="col-span-6 s900:col-span-12 h-50 m-auto">
-          <img [src]="imageUrl" alt="Preview" class="preview-image">
+          <img [src]="BaseFileCenterUrl+'/'+imageUrl" alt="Preview" class="preview-image">
         </div>
       </div>
     </form>

@@ -1,0 +1,64 @@
+<mat-card class="p-4">
+  <mat-card-header>
+    <mat-card-title>Users</mat-card-title>
+    <mat-card-subtitle>List of all users</mat-card-subtitle>
+  </mat-card-header>
+  <div style="padding: 4px;">
+    <div class="flex justify-between mt-4">
+      <button mat-raised-button color="accent" routerLink="/user">
+        <mat-icon>cancel</mat-icon> Cancel
+      </button>
+      <button mat-raised-button color="primary" (click)="submitForm()">
+        <mat-icon>save</mat-icon>  {{ editMode ? "Edit" : "Add" }}
+      </button>
+    </div>
+
+    <form [formGroup]="userForm" class="grid grid-cols-12 gap-4 mt-4">
+      <mat-form-field appearance="outline" class="col-span-4 md:col-span-12" style="height: 50px;">
+        <mat-label>Name:</mat-label>
+        <input matInput detail="Name" formControlName="name">
+        <mat-error *ngIf="userForm.get('name')?.hasError('required')">Name is required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline"  class="col-span-4 md:col-span-12">
+        <mat-label>Email:</mat-label>
+        <input matInput type="email" formControlName="email">
+        <mat-error *ngIf="userForm.get('email')?.hasError('required')">Email is required</mat-error>
+        <mat-error *ngIf="userForm.get('email')?.hasError('email')">Invalid email</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline"  class="col-span-4 md:col-span-12">
+        <mat-label>Phone:</mat-label>
+        <input matInput formControlName="phone">
+        <mat-error *ngIf="userForm.get('phone')?.hasError('required')">Phone is required</mat-error>
+      </mat-form-field>
+
+      <mat-checkbox  class="col-span-4 md:col-span-12" formControlName="isAdmin">Is Admin</mat-checkbox>
+
+      <mat-form-field appearance="outline" class="col-span-4 md:col-span-12">
+        <mat-label>Street:</mat-label>
+        <input matInput formControlName="street">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline"  class="col-span-4 md:col-span-12">
+        <mat-label>Apartment:</mat-label>
+        <input matInput formControlName="apartment">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline"  class="col-span-4 md:col-span-12">
+        <mat-label>ZIP:</mat-label>
+        <input matInput formControlName="zip">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="col-span-4 md:col-span-12">
+        <mat-label>City:</mat-label>
+        <input matInput formControlName="city">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline"  class="col-span-4 md:col-span-12">
+        <mat-label>Country:</mat-label>
+        <input matInput formControlName="country">
+      </mat-form-field>
+    </form>
+  </div>
+</mat-card>

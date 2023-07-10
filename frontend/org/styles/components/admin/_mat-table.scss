@@ -10,7 +10,8 @@ table {
     }
   }
   tbody{
-    height: calc(100vh - 205px);
+    // height: calc(100vh - 205px); //without paginator
+    height: calc(100vh - 265px); //without paginator
   }
 }
 

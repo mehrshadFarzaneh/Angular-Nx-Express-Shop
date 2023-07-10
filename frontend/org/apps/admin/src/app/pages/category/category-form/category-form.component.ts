@@ -61,6 +61,7 @@ export class CategoryFormComponent {
 
   submitForm() {
     if (this.myForm.invalid){
+      this.myForm.markAllAsTouched();
       return;
     }
     const category: CategoryModel = {

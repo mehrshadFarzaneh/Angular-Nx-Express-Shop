@@ -9,6 +9,7 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 import { LiveAnnouncer } from "@angular/cdk/a11y";
 import { ProductService } from "../../../../../../../libs/products/src/lib/data-access/services/product.service";
 import { ProductModel } from "../../../../../../../libs/products/src/lib/data-access/model/product.model";
+import { MatPaginator } from "@angular/material/paginator";
 
 
 @Component({
@@ -19,6 +20,8 @@ import { ProductModel } from "../../../../../../../libs/products/src/lib/data-ac
 export class ProductListComponent {
   // @ts-ignore
   @ViewChild(MatSort) sort: MatSort;
+  // @ts-ignore
+  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   PRODUCTS_DATA:ProductModel[] = [
     // some sample data
     {
@@ -58,13 +61,18 @@ export class ProductListComponent {
               private _liveAnnouncer: LiveAnnouncer) {
   }
   ngOnInit(): void {
+
     // @ts-ignore
     this.productService.getProducts().subscribe((response: ProductModel[])=>{
       this.PRODUCTS_DATA = response;
       this.dataSource = new MatTableDataSource(this.PRODUCTS_DATA);
+      this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     })
   }
+  // ngAfterViewInit(): void {
+
+  // }
 
   announceSortChange(sortState: Sort) {
     if (sortState.direction) {
