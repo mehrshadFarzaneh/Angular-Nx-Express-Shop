@@ -27,10 +27,14 @@ import { ScrollingModule } from "@angular/cdk/scrolling";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
 
+  ],
+  imports:[
+    MatPaginatorModule
   ],
   exports: [
     MatAutocompleteModule,
@@ -57,6 +61,7 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
     MatToolbarModule,
     MatTooltipModule,
     MatStepperModule,
+    MatPaginatorModule,
     ScrollingModule, // cdk,
     NgxMatSelectSearchModule, // angular material select option with search library
     MatDatepickerModule,

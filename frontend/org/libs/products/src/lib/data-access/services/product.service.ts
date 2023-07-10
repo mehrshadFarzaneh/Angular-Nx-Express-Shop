@@ -24,12 +24,12 @@ export class ProductService {
     return this.http.get(this.API_URL + "/" + productId)
   }
 
-  editProduct(product: ProductModel):Observable<ProductModel> {
-    return this.http.put(this.API_URL + "/" + product.id,product)
+  editProduct(product: ProductModel,productData :FormData):Observable<ProductModel> {
+    return this.http.put(this.API_URL + "/" + product.id,productData)
   }
 
-  addProduct(product: ProductModel):Observable<ProductModel> {
-    return this.http.post(this.API_URL ,product)
+  addProduct(productData: FormData):Observable<ProductModel> {
+    return this.http.post(this.API_URL ,productData)
   }
 
   deleteProduct(id: string) {

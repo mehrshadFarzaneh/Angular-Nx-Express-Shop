@@ -1,0 +1,31 @@
+
+<mat-card class="p-4">
+  <mat-card-header>
+    <mat-card-title>Categories</mat-card-title>
+    <mat-card-subtitle>List of all categories</mat-card-subtitle>
+  </mat-card-header>
+  <div style="padding: 4px;">
+  <div class="flex justify-between mt-4">
+    <button mat-raised-button color="accent" routerLink="../..">
+      <mat-icon>cancel</mat-icon> Cancel
+    </button>
+  </div>
+
+  <div class="flex flex-col md:flex-row gap-4 mt-4">
+    <div class="w-full md:w-1/3" style="height: 50px; border: 1px solid gray; padding: 10px;">
+      <span style="font-weight: bold;">Name:</span>
+      <span detail="Name">{{order.user?.name}}</span>
+    </div>
+
+    <mat-form-field appearance="outline" class="w-full md:w-1/3" style="height: 50px;">
+      <mat-select (selectionChange)="changeSelection($event)"  [(ngModel)]="selected" [placeholder]="selected">
+        <mat-option *ngFor="let orderstaus of orderStatusList;let i = index" [value]="i" class="">
+          <span> {{ orderstaus.label }} </span>
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+  </div>
+  </div>
+
+</mat-card>

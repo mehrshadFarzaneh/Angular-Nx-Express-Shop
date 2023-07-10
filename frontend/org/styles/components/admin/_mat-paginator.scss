@@ -1,0 +1,37 @@
+.custom-paginator{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 2px 16px 2px 16px;
+  background-color: #f5f5f5;
+  border-top: 1px solid #ccc;
+
+  .mat-paginator-range-label {
+    margin-right: 16px;
+  }
+
+  .mat-paginator-navigation-previous,
+  .mat-paginator-navigation-next {
+    font-size: 20px;
+    padding: 8px;
+  }
+
+  .mat-paginator-page-size {
+    margin-right: 16px;
+  }
+
+  .mat-select-trigger {
+    font-size: 14px;
+    padding: 4px;
+    border-radius: 4px;
+    background-color: #fff;
+  }
+
+  .mat-paginator-page-summary {
+    margin-left: auto;
+    font-size: 14px;
+  }
+}

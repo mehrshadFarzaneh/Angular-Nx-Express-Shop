@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit,Inject } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { BreakpointObserver } from '@angular/cdk/layout';
@@ -13,6 +13,7 @@ import { AngularEditorConfig } from "@kolkov/angular-editor";
 import { DomSanitizer } from "@angular/platform-browser";
 import { Observable } from "rxjs";
 import { CategoryModel } from "libs/category/src/lib/data-access/models/category.model";
+import { APP_CONFIG } from "@org/app-config";
 // import { Editor } from "ngx-editor";
 
 @Component({
@@ -56,9 +57,11 @@ export class ProductFormComponent implements OnInit {
       },
     ]
   };
+  BaseFileCenterUrl = this.appConfig.baseUrl;
 
   // categories$: Observable<CategoryModel[]>;
   constructor(
+    @Inject(APP_CONFIG) private appConfig: any,
     private formBuilder: FormBuilder,
     private activatedRoute: ActivatedRoute,
     private productService: ProductService,
@@ -117,12 +120,16 @@ export class ProductFormComponent implements OnInit {
               dateCreated: product.dateCreated || '',
             });
           }
+          this.imageUrl = product.image;
         },
         (error) => {
           console.log(error);
         }
       );
+
     }
+
+
     this.searchControl.valueChanges.subscribe((value: string) => {
       this.categoriesFilter(value);
     });
@@ -145,7 +152,14 @@ export class ProductFormComponent implements OnInit {
   // }
 
   submitForm() {
+    // console.log(this.myForm.get('name')?.hasError('required'));
+    // Get all Form Controls keys and loop them
+    Object.keys(this.myForm.controls).forEach(key => {
+      // Get errors of every form control
+      console.log(this.myForm.get(key)?.errors);
+    });
     if (this.myForm.invalid) {
+      this.myForm.markAllAsTouched();
       return;
     }
     const product: ProductModel = {
@@ -157,15 +171,26 @@ export class ProductFormComponent implements OnInit {
       images: this.myForm.get('images')!.value,
       brand: this.myForm.get('brand')!.value,
       price: this.myForm.get('price')!.value,
-      category: this.myForm.get('category')!.value,
+      category: this.myForm.get('category')!.value.id,
       countInStock: this.myForm.get('countInStock')!.value,
       rating: this.myForm.get('rating')!.value,
       numReviews: this.myForm.get('numReviews')!.value,
       isFeatured: this.myForm.get('isFeatured')!.value,
       dateCreated: this.myForm.get('dateCreated')!.value,
     };
+    const formData = new FormData();
+    // You can also use a “for” loop to iterate over the form keys
+    for (const key in product) {
+      // eslint-disable-next-line no-prototype-builtins
+      if (product.hasOwnProperty(key)) {
+        console.log(key + ": " + (product as any)[key])
+        formData.append(key, (product as any)[key]);
+      }
+
+    }
+
     if (this.editMode) {
-      this.productService.editProduct(product).subscribe(
+      this.productService.editProduct(product,formData).subscribe(
         (response) => {
           this.snackBar.open('Product is updated!', 'Close', {
             duration: 2000,
@@ -180,7 +205,7 @@ export class ProductFormComponent implements OnInit {
         }
       );
     } else {
-      this.productService.addProduct(product).subscribe(
+      this.productService.addProduct(formData).subscribe(
         (response) => {
           this.snackBar.open('Product is Added!', 'Close', {
             duration: 2000,
@@ -231,6 +256,8 @@ export class ProductFormComponent implements OnInit {
     const file = event.target.files[0];
     if (file) {
       this.selectedImageName = file.name;
+      this.myForm.patchValue({image: file});
+      this.myForm.updateValueAndValidity();
       const reader = new FileReader();
       reader.onload = (e: any) => {
         this.imageUrl = e.target.result;

@@ -5,6 +5,10 @@ import { CategoryListComponent } from "./pages/category/category-list/category-l
 import { CategoryFormComponent } from "./pages/category/category-form/category-form.component";
 import { ProductListComponent } from "./pages/product/profuct-list/product-list.component";
 import { ProductFormComponent } from "./pages/product/product-form/product-form.component";
+import { UserListComponent } from './pages/user/user-list/user-list.component';
+import { UserFormComponent } from './pages/user/user-form/user-form.component';
+import { OrderListComponent } from './pages/order/order-list/order-list.component';
+import { OrderDetailComponent } from './pages/order/order-detail/order-detail.component';
 
 export const appRoutes: Route[] = [
   {
@@ -33,6 +37,34 @@ export const appRoutes: Route[] = [
       {
         path:"product/add",
         component:ProductFormComponent
+      },
+      {
+        path:"product/edit/:id",
+        component:ProductFormComponent
+      },
+      {
+        path:"user",
+        component:UserListComponent
+      },
+      {
+        path:"user/add",
+        component:UserFormComponent
+      },
+      {
+        path:"user/edit/:id",
+        component:UserFormComponent
+      },
+      {
+        path:"product/edit/:id",
+        component:ProductFormComponent
+      },
+      {
+        path:"order",
+        component:OrderListComponent
+      },
+      {
+        path:"order/edit/:id",
+        component:OrderDetailComponent
       },
     ]
   }
