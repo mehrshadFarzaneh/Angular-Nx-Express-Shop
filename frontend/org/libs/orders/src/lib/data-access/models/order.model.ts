@@ -3,7 +3,7 @@ import {OrderItem} from "./order-item.model";
 
 export class OrderModel {
   id?: string;
-  orderItems?: OrderItem;
+  orderItems?: OrderItem[];
   shippingAddress1?: string;
   shippingAddress2?: string;
   city?: string;
@@ -12,6 +12,6 @@ export class OrderModel {
   phone?: string;
   status?: number;
   totalPrice?: string;
-  user?: UserModel;
+  user?: UserModel | string;
   dateOrdered?: string;
 }

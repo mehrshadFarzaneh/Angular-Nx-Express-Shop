@@ -6,6 +6,10 @@ nx serve shop
 For creating a new project:
 nx generate @nrwl/angular:app nameApp
 
+{
+  "email": "johndoe@example.com",
+  "password": "password123"
+}
 
 application level component:
  nx g component home-page --project=shop
@@ -19,3 +23,7 @@ new component inside a lib:
 nx generate @schematics/angular:component --project=ui --name=banner --viewEncapsulation=Emulated --changeDetection=Default --prefix=ui --s
 tyle=scss --type=Component --selector=banner --export
 
+
+ngrx with facade:
+npx nx generate @nx/angular:ngrx-feature-store --name=cart --parent=libs/orders/src/lib/orders.module.ts --directory=state --facade=true --no-interactive
+npx nx generate @nx/angular:ngrx-feature-store --name=user --parent=libs/users/src/lib/users.module.ts --directory=state --facade=true --no-interactive

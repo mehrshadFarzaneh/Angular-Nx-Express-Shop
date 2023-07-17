@@ -1,1 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+@import "../../../styles/shop-app";
+
+
+body{
+  overflow: auto;
+}
+header {
+  margin-bottom: 25px;
+}
+footer {
+  background-color: var(--yellow-100);
+  min-height: 50px;
+  padding: 10px 25px;
+  width: 100%;
+  margin-top: 25px;
+}
+.container {
+  width: 1200px;
+  padding: 15px;
+  margin: 0 auto;
+  background-color: var(--surface-100);
+}
