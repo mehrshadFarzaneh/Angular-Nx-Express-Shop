@@ -17,7 +17,8 @@ app.use(morgan('tiny'));
 app.use(cors());
 app.use(authJwt());
 app.use(errorHandler);
-app.use('/uploads', express.static('uploads'));
+// app.use('/uploads', express.static('uploads'));
+app.use('/public/uploads', express.static(__dirname + '/public/uploads'));
 
 //#region Routers:
 

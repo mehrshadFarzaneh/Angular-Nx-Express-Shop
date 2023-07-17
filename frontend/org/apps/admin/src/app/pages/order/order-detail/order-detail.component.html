@@ -18,7 +18,7 @@
     </div>
 
     <mat-form-field appearance="outline" class="w-full md:w-1/3" style="height: 50px;">
-      <mat-select (selectionChange)="changeSelection($event)"  [(ngModel)]="selected" [placeholder]="selected">
+      <mat-select (selectionChange)="changeSelection($event)"  [(ngModel)]="selected" [placeholder]="selected.toString()">
         <mat-option *ngFor="let orderstaus of orderStatusList;let i = index" [value]="i" class="">
           <span> {{ orderstaus.label }} </span>
         </mat-option>

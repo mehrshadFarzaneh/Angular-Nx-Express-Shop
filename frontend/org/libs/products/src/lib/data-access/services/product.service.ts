@@ -1,7 +1,7 @@
 import { Inject, Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { APP_CONFIG } from "@org/app-config";
-import { Observable } from "rxjs";
+import { Observable, map } from "rxjs";
 import { ProductModel } from "../model/product.model";
 @Injectable({
   providedIn: 'root'
@@ -16,8 +16,12 @@ export class ProductService {
     this.API_URL = appConfig.apiUrl + this.ServiceAPI;
   }
 
-  getProducts(){
-    return this.http.get(this.API_URL + "/with-category-name");
+  getProducts(categoriesFilter?: string[]): Observable<ProductModel[]> {
+    let params = new HttpParams();
+    if (categoriesFilter) {
+      params = params.append('categories', categoriesFilter.join(','));
+    }
+    return this.http.get<ProductModel[]>(this.API_URL, { params: params });
   }
 
   getProductById(productId: string) {
@@ -34,5 +38,15 @@ export class ProductService {
 
   deleteProduct(id: string) {
     return this.http.delete(this.API_URL+ "/" + id);
+  }
+
+  getProductsCount(): Observable<number> {
+    return this.http
+      .get<number>(`${this.API_URL}/get/count`)
+      .pipe(map((objectValue: any) => objectValue.productCount));
+  }
+
+  getFeaturedProducts(count: number): Observable<ProductModel[]> {
+    return this.http.get<ProductModel[]>(`${this.API_URL}/get/featured/${count}`);
   }
 }

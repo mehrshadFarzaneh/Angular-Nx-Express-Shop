@@ -9,11 +9,13 @@ import { UserListComponent } from './pages/user/user-list/user-list.component';
 import { UserFormComponent } from './pages/user/user-form/user-form.component';
 import { OrderListComponent } from './pages/order/order-list/order-list.component';
 import { OrderDetailComponent } from './pages/order/order-detail/order-detail.component';
+import { AuthGuard } from '@org/users';
 
 export const appRoutes: Route[] = [
   {
     path: "",
     component: ShellComponent,
+    canActivate: [AuthGuard],
     children:[{
       path:"dashboard",
       component:DashbordComponent

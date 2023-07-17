@@ -15,8 +15,6 @@ import { OrderService } from 'libs/orders/src/lib/data-access/services/order.ser
 })
 export class OrderDetailComponent {
 getCurentValue(): any {
-  // this.orderStatusList.find(a => a.orderId == this.order.status)
-  debugger;
    const a = this.orderStatusList[this.order.status || 0].label;
    return a;
 }

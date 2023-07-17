@@ -9,14 +9,15 @@ function authJwt() {
     isRevoked: isRevoked // آیا یک توکن JWT مورد اعتماد است یا خیر.
   }).unless({
     path: [
-      {url: /\/api\/v1\/products(.*)/ , methods: ['GET','PUT','POST','DELETE', 'OPTIONS'] },
-      {url: /\/api\/v1\/categories(.*)/ , methods: ['GET','PUT','POST','DELETE', 'OPTIONS'] },
-      {url: /\/api\/v1\/api#(.*)/ , methods: ['GET', 'OPTIONS', 'POST'] },
-      {url: /\/api\/v1\/users/ , methods: ['GET','PUT','POST','DELETE', 'OPTIONS'] },
-      {url: /\/api\/v1\/orders(.*)/ , methods: ['GET','PUT','POST','DELETE', 'OPTIONS'] },
+      {url: /\/api\/v1\/products(.*)/ , methods: ['GET', 'OPTIONS'] },
+      {url: /\/api\/v1\/categories(.*)/ , methods: ['GET', 'OPTIONS'] },
+      // {url: /\/api\/v1\/api#(.*)/ , methods: ['GET', 'OPTIONS', 'POST'] },
+      // {url: /\/api\/v1\/users/ , methods: ['GET','PUT','POST','DELETE', 'OPTIONS'] },
+      {url: /\/api\/v1\/orders(.*)/ , methods: ['POST', 'OPTIONS'] },
       {url: /\/api\/v1\/users\/login/ , methods: ['POST'] },
       {url: /\/api\/v1\/users\/register/ , methods: ['POST']},
       { url: /\/uploads\/(.*)/, methods: ['GET'] },
+      { url: /\public\/uploads\/(.*)/, methods: ['GET'] },
     ]
   })
 }

@@ -3,7 +3,7 @@ import { HomePageComponent } from "./pages/home-page/home-page.component";
 
 export const appRoutes: Route[] = [
   {
-    path: 'home',
+    path: '',
     component: HomePageComponent
   }
 ];

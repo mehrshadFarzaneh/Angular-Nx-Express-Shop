@@ -11,7 +11,7 @@ import { AngularMaterialModule } from '../../../../libs/angular-material/src';
 import { MatSortModule } from '@angular/material/sort';
 import { environment } from '../environments/environment';
 import { APP_CONFIG } from '@org/app-config';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CategoryListComponent } from './pages/category/category-list/category-list.component';
 import { CategoryFormComponent } from './pages/category/category-form/category-form.component';
@@ -40,6 +40,8 @@ import { UserListComponent } from './pages/user/user-list/user-list.component';
 import { UserFormComponent } from './pages/user/user-form/user-form.component';
 import { OrderListComponent } from './pages/order/order-list/order-list.component';
 import { OrderDetailComponent } from './pages/order/order-detail/order-detail.component';
+import { JwtInterceptor, UsersModule } from '@org/users';
+import { CategoryService } from '@org/category';
 
 @NgModule({
   declarations: [
@@ -78,12 +80,14 @@ import { OrderDetailComponent } from './pages/order/order-detail/order-detail.co
     BrowserAnimationsModule,
     // EditorModule,
     ButtonModule,
-    AngularEditorModule,
     // QuillModule.forRoot()
+    UsersModule
   ],
   providers: [
+    CategoryService,
     { provide: APP_CONFIG, useValue: environment },
     { provide: MAT_COLOR_FORMATS, useValue: NGX_MAT_COLOR_FORMATS },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent],

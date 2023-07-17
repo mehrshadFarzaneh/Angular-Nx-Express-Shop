@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { APP_CONFIG } from "@org/app-config";
 import { UserModel } from "../models/user.model";
 import { Observable } from "rxjs";
+import { UserFacade } from "@org/users";
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,8 @@ export class UserService {
   API_URL = "";
   constructor(
     @Inject(APP_CONFIG) private appConfig: any,
-    private http: HttpClient
+    private http: HttpClient,
+    private userFacade: UserFacade
   ) {
     this.API_URL = appConfig.apiUrl + this.ServiceAPI;
   }
@@ -35,5 +37,16 @@ export class UserService {
 
   deleteUser(id: string) {
     return this.http.delete(this.API_URL + "/" + id);
+  }
+  initAppSession() {
+    this.userFacade.init();
+  }
+
+  observeCurrentUser() {
+    return this.userFacade.user$;
+  }
+
+  isCurrentUserAuth() {
+    return this.userFacade.isAuthenticated$;
   }
 }

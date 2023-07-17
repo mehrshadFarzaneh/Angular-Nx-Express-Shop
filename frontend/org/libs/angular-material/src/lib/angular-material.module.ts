@@ -1,3 +1,4 @@
+import { AngularEditorModule } from '@kolkov/angular-editor';
 import { NgModule } from '@angular/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
@@ -65,7 +66,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     ScrollingModule, // cdk,
     NgxMatSelectSearchModule, // angular material select option with search library
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    AngularEditorModule // 3party library
   ]
 })
 export class AngularMaterialModule {}
