@@ -1,0 +1,16 @@
+import { Meta } from '@storybook/angular';
+import { <%=componentName%> } from './<%=componentFileName%>';
+
+export default {
+  title: '<%=componentName%>',
+  component: <%=componentName%>
+} as Meta<<%=componentName%>>;
+
+export const Primary = {
+  render: (args: <%=componentName%>) => ({
+    props: args,
+  }),
+  args: {<% for (let prop of props) { %>
+    <%= prop.name %>:  <%- prop.defaultValue %>,<% } %>
+  },
+};

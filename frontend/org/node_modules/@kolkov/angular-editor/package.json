@@ -1,0 +1,50 @@
+{
+  "name": "@kolkov/angular-editor",
+  "version": "3.0.0-beta.0",
+  "description": "A simple native WYSIWYG editor for Angular 8+, 13+. Rich Text editor component for Angular.",
+  "author": "Andrey Kolkov <a.kolkov@gmail.com>",
+  "repository": "https://github.com/kolkov/angular-editor",
+  "license": "MIT",
+  "private": false,
+  "bugs": {
+    "url": "https://github.com/kolkov/angular-editor/issues"
+  },
+  "peerDependencies": {
+    "@angular/common": ">=13",
+    "@angular/core": ">=13"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "keywords": [
+    "angular",
+    "editor",
+    "native",
+    "wysiwyg",
+    "angular-editor",
+    "angular-wysiwyg-editor",
+    "wysiwyg-editor",
+    "rich",
+    "rich text editor"
+  ],
+  "module": "fesm2015/kolkov-angular-editor.mjs",
+  "es2020": "fesm2020/kolkov-angular-editor.mjs",
+  "esm2020": "esm2020/kolkov-angular-editor.mjs",
+  "fesm2020": "fesm2020/kolkov-angular-editor.mjs",
+  "fesm2015": "fesm2015/kolkov-angular-editor.mjs",
+  "typings": "kolkov-angular-editor.d.ts",
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./kolkov-angular-editor.d.ts",
+      "esm2020": "./esm2020/kolkov-angular-editor.mjs",
+      "es2020": "./fesm2020/kolkov-angular-editor.mjs",
+      "es2015": "./fesm2015/kolkov-angular-editor.mjs",
+      "node": "./fesm2015/kolkov-angular-editor.mjs",
+      "default": "./fesm2020/kolkov-angular-editor.mjs"
+    }
+  },
+  "sideEffects": false
+}

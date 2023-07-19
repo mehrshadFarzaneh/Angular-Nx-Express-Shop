@@ -1,0 +1,12 @@
+import { Component, ViewEncapsulation } from '@angular/core';
+import * as i0 from "@angular/core";
+export class AeToolbarSetComponent {
+    constructor() { }
+}
+AeToolbarSetComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: AeToolbarSetComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+AeToolbarSetComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "13.3.11", type: AeToolbarSetComponent, selector: "ae-toolbar-set", ngImport: i0, template: "<div class=\"angular-editor-toolbar-set\">\n  <ng-content></ng-content>\n</div>\n", styles: [""], encapsulation: i0.ViewEncapsulation.None });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: AeToolbarSetComponent, decorators: [{
+            type: Component,
+            args: [{ selector: 'ae-toolbar-set', encapsulation: ViewEncapsulation.None, template: "<div class=\"angular-editor-toolbar-set\">\n  <ng-content></ng-content>\n</div>\n", styles: [""] }]
+        }], ctorParameters: function () { return []; } });
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYWUtdG9vbGJhci1zZXQuY29tcG9uZW50LmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vLi4vcHJvamVjdHMvYW5ndWxhci1lZGl0b3Ivc3JjL2xpYi9hZS10b29sYmFyLXNldC9hZS10b29sYmFyLXNldC5jb21wb25lbnQudHMiLCIuLi8uLi8uLi8uLi8uLi9wcm9qZWN0cy9hbmd1bGFyLWVkaXRvci9zcmMvbGliL2FlLXRvb2xiYXItc2V0L2FlLXRvb2xiYXItc2V0LmNvbXBvbmVudC5odG1sIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLE9BQU8sRUFBQyxTQUFTLEVBQUUsaUJBQWlCLEVBQUMsTUFBTSxlQUFlLENBQUM7O0FBUTNELE1BQU0sT0FBTyxxQkFBcUI7SUFFaEMsZ0JBQWdCLENBQUM7O21IQUZOLHFCQUFxQjt1R0FBckIscUJBQXFCLHNEQ1JsQyxtRkFHQTs0RkRLYSxxQkFBcUI7a0JBTmpDLFNBQVM7K0JBQ0UsZ0JBQWdCLGlCQUdYLGlCQUFpQixDQUFDLElBQUkiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQge0NvbXBvbmVudCwgVmlld0VuY2Fwc3VsYXRpb259IGZyb20gJ0Bhbmd1bGFyL2NvcmUnO1xuXG5AQ29tcG9uZW50KHtcbiAgc2VsZWN0b3I6ICdhZS10b29sYmFyLXNldCcsXG4gIHRlbXBsYXRlVXJsOiAnLi9hZS10b29sYmFyLXNldC5jb21wb25lbnQuaHRtbCcsXG4gIHN0eWxlVXJsczogWycuL2FlLXRvb2xiYXItc2V0LmNvbXBvbmVudC5zY3NzJ10sXG4gIGVuY2Fwc3VsYXRpb246IFZpZXdFbmNhcHN1bGF0aW9uLk5vbmUsXG59KVxuZXhwb3J0IGNsYXNzIEFlVG9vbGJhclNldENvbXBvbmVudCB7XG5cbiAgY29uc3RydWN0b3IoKSB7IH1cblxufVxuIiwiPGRpdiBjbGFzcz1cImFuZ3VsYXItZWRpdG9yLXRvb2xiYXItc2V0XCI+XG4gIDxuZy1jb250ZW50PjwvbmctY29udGVudD5cbjwvZGl2PlxuIl19
