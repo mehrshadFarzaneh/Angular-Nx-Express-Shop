@@ -1,5 +1,5 @@
 import { emptyCart } from './../../state/cart.actions';
-import { UserService } from './../../../../../users/src/lib/data-access/services/user.service';
+import { UserService } from "@org/users";
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { OrderItem } from '../../data-access/models/order-item.model';

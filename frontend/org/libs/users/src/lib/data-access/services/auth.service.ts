@@ -4,7 +4,7 @@ import { APP_CONFIG } from '@org/app-config';
 import { UserModel } from '@org/users';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import { TokenLocalStorageService } from './token-local-storage.service';
+import { TokenLocalStorageService } from "@org/users";
 
 @Injectable({
   providedIn: 'root'

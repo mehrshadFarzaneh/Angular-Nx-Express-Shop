@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
-// eslint-disable-next-line @nx/enforce-module-boundaries
-import {UserModel} from "../../../../../../../libs/users/src/lib/data-access/models/user.model";
-// eslint-disable-next-line @nx/enforce-module-boundaries
-import {UserService} from "../../../../../../../libs/users/src/lib/data-access/services/user.service";
+import {UserService,UserModel} from "@org/users";
 import {LiveAnnouncer} from "@angular/cdk/a11y";
 import { Subject, takeUntil } from 'rxjs';
 

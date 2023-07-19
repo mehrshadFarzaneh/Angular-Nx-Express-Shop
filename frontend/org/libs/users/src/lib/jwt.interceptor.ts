@@ -1,4 +1,4 @@
-import { TokenLocalStorageService } from './data-access/services/token-local-storage.service';
+import { TokenLocalStorageService } from "@org/users";
 import { Inject, Injectable } from '@angular/core';
 import {
   HttpRequest,

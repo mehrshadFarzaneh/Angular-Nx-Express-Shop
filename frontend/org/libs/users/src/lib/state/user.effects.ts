@@ -3,8 +3,7 @@ import { createEffect, Actions, ofType } from '@ngrx/effects';
 import { switchMap, catchError, of, map } from 'rxjs';
 import * as UserActions from './user.actions';
 import * as UserFeature from './user.reducer';
-import { TokenLocalStorageService } from '../data-access/services/token-local-storage.service';
-import { UserService } from '../data-access/services/user.service';
+import { TokenLocalStorageService, UserService} from "@org/users";
 
 @Injectable()
 export class UserEffects {

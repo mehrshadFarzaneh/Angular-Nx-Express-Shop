@@ -10,3 +10,6 @@ export * from './lib/lib.routes';
 export * from './lib/auth.guard';
 export * from './lib/jwt.interceptor';
 export * from './lib/data-access/models/user.model';
+export * from './lib/data-access/services/token-local-storage.service';
+export * from './lib/data-access/services/auth.service';
+export * from './lib/data-access/services/user.service';
