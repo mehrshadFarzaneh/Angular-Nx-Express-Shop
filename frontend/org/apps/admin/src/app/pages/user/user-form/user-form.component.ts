@@ -2,10 +2,7 @@ import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
-// eslint-disable-next-line @nx/enforce-module-boundaries
-import {UserService} from "../../../../../../../libs/users/src/lib/data-access/services/user.service";
-// eslint-disable-next-line @nx/enforce-module-boundaries
-import {UserModel} from "../../../../../../../libs/users/src/lib/data-access/models/user.model";
+import {UserService,UserModel} from "@org/users";
 import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({

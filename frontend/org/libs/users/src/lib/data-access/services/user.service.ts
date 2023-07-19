@@ -1,9 +1,8 @@
 import { Inject, Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { APP_CONFIG } from "@org/app-config";
-import { UserModel } from "../models/user.model";
 import { Observable } from "rxjs";
-import { UserFacade } from "@org/users";
+import { UserFacade, UserModel } from "@org/users";
 
 @Injectable({
   providedIn: 'root'

@@ -1,4 +1,4 @@
-import { AuthService } from './../../../../../../../libs/users/src/lib/data-access/services/auth.service';
+import { AuthService } from "@org/users";
 import { Component } from '@angular/core';
 
 @Component({

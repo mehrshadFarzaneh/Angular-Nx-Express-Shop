@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../../data-access/services/auth.service';
-import { TokenLocalStorageService } from '../../data-access/services/token-local-storage.service';
+import { TokenLocalStorageService,AuthService } from "@org/users";
 import { Router } from '@angular/router';
 
 @Component({

@@ -1,5 +1,5 @@
 import { CanActivateFn, Router } from '@angular/router';
-import { TokenLocalStorageService } from './data-access/services/token-local-storage.service';
+import { TokenLocalStorageService } from "@org/users";
 import { inject } from '@angular/core';
 
 export const AuthGuard: CanActivateFn = (route, state) => {

@@ -1,4 +1,4 @@
-import { UserFacade } from './../../../../libs/users/src/lib/state/user.facade';
+import { UserFacade } from "@org/users";
 import { Component, OnInit } from '@angular/core';
 
 @Component({
