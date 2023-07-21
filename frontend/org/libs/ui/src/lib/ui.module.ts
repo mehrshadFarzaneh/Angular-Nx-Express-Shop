@@ -8,6 +8,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { DialogService } from './services/dialog.service';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { GalleryComponent } from './gallery/gallery.component';
+import { HostUrlChangerPipe } from './pipes/host-url-changer.pipe';
 // TODO: Put Your Component Inside A Component Folder Exactly like The Services
 @NgModule({
   imports: [CommonModule, AngularMaterialModule],
@@ -16,8 +17,15 @@ import { GalleryComponent } from './gallery/gallery.component';
     SliderComponent,
     ConfirmDialogComponent,
     GalleryComponent,
+    HostUrlChangerPipe,
   ],
-  exports: [BannerComponent, SliderComponent, ConfirmDialogComponent,GalleryComponent],
+  exports: [
+    BannerComponent,
+    SliderComponent,
+    ConfirmDialogComponent,
+    GalleryComponent,
+    HostUrlChangerPipe
+  ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class UiModule {}

@@ -1,4 +1,4 @@
-import { UserModel } from '@org/users';
+// import { UserModel } from '@org/users';
 import {OrderItem} from "./order-item.model";
 
 export class OrderModel {
@@ -12,6 +12,6 @@ export class OrderModel {
   phone?: string;
   status?: number;
   totalPrice?: string;
-  user?: UserModel | string;
+  user?: any | string;
   dateOrdered?: string;
 }

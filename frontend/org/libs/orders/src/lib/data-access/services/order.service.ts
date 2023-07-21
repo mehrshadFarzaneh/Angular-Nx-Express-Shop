@@ -1,9 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { APP_CONFIG } from '@org/app-config';
-import { Observable } from 'rxjs';
+import { Observable, switchMap } from 'rxjs';
 import { OrderModel } from '../models/order.model';
 import { ProductModel } from 'libs/products/src/lib/data-access/model/product.model';
+import { OrderItem } from '../models/order-item.model';
+import { StripeService } from 'ngx-stripe';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +17,8 @@ export class OrderService {
   API_URL_For_Products = "";
   constructor(
     @Inject(APP_CONFIG) private appConfig: any,
-    private http: HttpClient
+    private http: HttpClient,
+    private stripeService: StripeService
   ) {
     this.API_URL = appConfig.apiUrl + this.ServiceAPI;
     this.API_URL_For_Products = appConfig.apiUrl + this.ServiceAPIForProducts;
@@ -45,5 +48,18 @@ export class OrderService {
   // Corresponding
   getProductById(productId: string):Observable<ProductModel> {
     return this.http.get(this.API_URL_For_Products + "/" + productId)
+  }
+
+
+  createCheckoutSession(order:OrderItem[]){
+    return this.http.post(this.API_URL + "/create-checkout-session", order).pipe(
+      switchMap((checkoutSessionId:any)=>{
+        // this code return Error message / should be subscribe
+        return this.stripeService.redirectToCheckout({sessionId: checkoutSessionId["id"]});
+      })
+    )
+
+      // this.stripeService.redirectToCheckout({sessionId: CheckoutSessionId.id}).subscribe( )
+
   }
 }

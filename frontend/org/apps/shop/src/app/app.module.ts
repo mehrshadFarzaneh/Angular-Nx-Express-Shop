@@ -24,6 +24,7 @@ import { JwtInterceptor, UsersModule } from '@org/users';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { NgxStripeModule } from 'ngx-stripe';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production, // Restrict extension to log-only mode
       autoPause: false, // Pauses recording actions and state changes when the extension window is not open
-    })
+    }),
+    NgxStripeModule.forRoot('pk_test_51NVleZGKkyz6opfAlMWYgdPbwABBwEF7GwweAbJxdM61k2yH3nZkeCtzhuvbRMLLaRDetSP9zGoPfRJWDiQEgrMg00w1FiJKhZ')
   ],
   providers: [
     MessageService,

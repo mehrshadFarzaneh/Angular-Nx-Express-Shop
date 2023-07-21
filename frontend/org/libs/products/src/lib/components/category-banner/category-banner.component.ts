@@ -1,8 +1,7 @@
 /* eslint-disable @angular-eslint/component-selector */
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CategoryService,CategoryModel } from '@org/category';
-import { Subject } from 'rxjs/internal/Subject';
-import { takeUntil } from 'rxjs/internal/operators/takeUntil';
+import { takeUntil,Subject } from 'rxjs';
 
 @Component({
   selector: 'products-category-banner',

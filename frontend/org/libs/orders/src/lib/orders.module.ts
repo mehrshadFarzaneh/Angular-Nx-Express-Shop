@@ -21,7 +21,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { OrderSummeryComponent } from './components/order-summery/order-summery.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { UserFacade } from '@org/users';
+// import { UserFacade } from '@org/users';
 
 export const ordersRoutes: Route[] = [
   {
@@ -55,7 +55,7 @@ export const ordersRoutes: Route[] = [
     BadgeModule,
     ButtonModule,
   ],
-  providers: [CartFacade,UserFacade],
+  providers: [CartFacade],
   declarations: [
     CartIconComponent,
     CartPageComponent,
