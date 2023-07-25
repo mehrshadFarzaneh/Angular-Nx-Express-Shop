@@ -8,7 +8,7 @@ export const CART_FEATURE_KEY = 'cart';
 
 export interface CartState extends EntityState<Cart> {
   cart: Cart,
-  error: string | null;
+  error?: string | null | any;
 }
 
 export interface CartPartialState {
@@ -62,7 +62,7 @@ const reducer = createReducer(
               }
             })
           },
-          error: null
+          error: ""
         };
         localStorage.setItem(CART_FEATURE_KEY,JSON.stringify(result.cart))
         return result;
@@ -72,7 +72,7 @@ const reducer = createReducer(
           cart: {
             items: [...(state.cart.items as CartItem[]), (item as  CartItem)]
           },
-          error: null
+          error: ""
         }
         localStorage.setItem(CART_FEATURE_KEY,JSON.stringify(result.cart))
         return result;

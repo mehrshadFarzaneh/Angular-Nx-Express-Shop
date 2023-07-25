@@ -21,7 +21,7 @@ export class CheckOutComponent {
   isSubmitted = false;
   orderItems: OrderItem[] = [];
   userId: string | undefined;
-  countries = [];
+  countries = ["Rasht", "New York", "Lahijan"];
   unsubscribe$: Subject<any> = new Subject();
 
   constructor(
